@@ -1,6 +1,6 @@
 from django.test import Client, TestCase
 
-from modules.inventory.models import Product
+from modules.inventory.models import Products
 
 from .models import Order
 
@@ -9,12 +9,12 @@ class OrdersTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.coke = Product.objects.create(
+        self.coke = Products.objects.create(
             description="Coca-Cola",
             unit_price=500,
             stock=10,
         )
-        self.chips = Product.objects.create(
+        self.chips = Products.objects.create(
             description="Potato Chips",
             unit_price=1000,
             stock=10,
