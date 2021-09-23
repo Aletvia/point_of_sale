@@ -1,6 +1,6 @@
 from django.test import Client, TestCase
 
-from .models import Product
+from .models import Products
 
 
 class ProductTestCase(TestCase):
@@ -9,7 +9,7 @@ class ProductTestCase(TestCase):
         self.client = Client()
 
     def create_coke(self):
-        return Product.objects.create(
+        return Products.objects.create(
             description='Coca-Cola',
             unit_price=500,
             stock=10
@@ -34,7 +34,7 @@ class ProductTestCase(TestCase):
         self.assertEqual(response.json(), expected)
 
     def test_create_product(self):
-        self.assertEqual(Product.objects.count(), 0)
+        self.assertEqual(Products.objects.count(), 0)
 
         body = {
             'description': 'Coca-Cola',
@@ -43,11 +43,11 @@ class ProductTestCase(TestCase):
         }
         response = self.client.post('/api/products/', body, 'application/json')
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(Product.objects.count(), 1)
+        self.assertEqual(Products.objects.count(), 1)
 
-        product = Product.objects.get()
+        product = Products.objects.get()
         expected = {
-            'id': product.id,
+            #'id': product.id,
             'description': 'Coca-Cola',
             'unit_price': 500,
             'stock': 10,
