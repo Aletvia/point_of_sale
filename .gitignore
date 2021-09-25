@@ -124,3 +124,4 @@ dmypy.json
 .pyre/
 
 src/modules/inventory/migrations/
+src/modules/orders/migrations/
