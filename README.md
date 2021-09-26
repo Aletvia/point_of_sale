@@ -1,51 +1,62 @@
-# 04 Point of sale test
+# Point of sale test
+API Rest which implements a system of inventory of products and orders.
 
-Write a very basic Django project that uses Django Rest Framework to provide a RESTful API for a point of sale that let's you track the inventory of products and the orders done.
+## Instalation
+Requeriments:
+- Entorno virtual (venv)
+- Python 3.7, pip
 
-Use the provided project boilerplate and add the code needed to pass all the unit tests provided in both `modules.inventory.tests` and `modules.orders.tests`.
+### Enviroment
 
-Use at least the models provided in both `modules.inventory.models` and `modules.orders.models`, but feel free to add any extra model if needed.
+This environment let ​make changes in the API. Follow the next steps:
 
-The API must use **JSON** format and should provide the following endpoints and functionalities:
+1. Create virtual environment (_venv_)
+```shell script
+virtualenv venv
+```
+2. Activate virtual environment
+```shell script
+source venv/bin/activate
+```
+3. Packages install
+```shell script
+(venv) pip install -r PATH/requirements.txt
+```
 
-### `/api/products/`
+With these steps we generate access to the libraries necessary for the development of the project.
 
-* List all existing products
-* Create a new product
-* Retrieve an existing product
-* Update an existing product
+1. It is necessary to carry out the corresponding migrations, execute the following command in the terminal within the same folder:
+```shell script
+python src/manage.py makemigrations
+python src/manage.py migrate
+```
+2. To run the API tests, run the following command in the terminal within the same folder:
+```shell script
+src/manage.py test src
+```
+3. If everything is fine, you could access the API.
 
-Note that **deleting a product is not allowed**.
 
-A product must allow you to save:
 
-* The description of the product
-* The unit price of the product in cents
-* The available stock of the product
+**Endpoints available:**
 
-### `/api/orders/`
+- List all existing products
+GET: http://127.0.0.1:8000/api/products/
 
-* List all existing orders
-* Create a new order
-* Retrieve an existing order
+- List all existing orders.
+GET: http://127.0.0.1:8000/api/orders/
 
-Note that **updating or deleting a product is not allowed**.
+- Create a new product
+POST: http://127.0.0.1:8000/api/products/
 
-A order must allow you to save/calculate:
+- Create a new order
+POST: http://127.0.0.1:8000/api/orders/
 
-* The list of items that were purchased
-* The quantity of each item
-* The total amount earned by the order in cents
+- Retrieve an existing product
+GET: http://127.0.0.1:8000/api/products/<id>/
 
-Note that when a order is created, the corresponding products' stock must be updated.
+- Retrieve an existing order
+GET: http://127.0.0.1:8000/api/orders/<id>/
 
-## Instructions
-
-1. Fork this repository
-2. Get a local copy of your fork
-3. Create a new branch
-4. Install the requirements with `pip install -r requirements.txt`
-5. Run your tests with `python src/manage.py test src`
-6. Commit your work when the command above reports an OK result
-7. Push your work to your fork
-8. Send a pull request from your fork's branch to this repo
+- Update an existing product
+PUT: http://127.0.0.1:8000/api/products/<id>/
