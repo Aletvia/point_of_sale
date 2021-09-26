@@ -122,3 +122,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+src/modules/inventory/migrations/
+src/modules/orders/migrations/
